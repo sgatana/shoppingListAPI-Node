@@ -9,20 +9,23 @@
     "eslint": "eslint",
     "jest": "jest",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon -r dotenv/config server.js"
   },
   "keywords": [],
   "author": "Stephen",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "eslint": "^5.3.0",
     "jest": "^23.5.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
+    "nodemon": "^1.18.3",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "prettier": "^1.14.2",
-    "sequelize": "^4.38.0"
+    "sequelize": "^4.38.0",
+    "winston": "^3.0.0"
   },
   "lint-staged": {
     "*.js": [
