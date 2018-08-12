@@ -1,0 +1,12 @@
+const { Factory } = require('rosie')
+const Chance = require('chance')
+const pushid = require('pushid')
+
+const chance = new Chance()
+module.exports = new Factory()
+  .sequence('id', i => i.toString())
+  .attr('name', () => chance.sentence())
+  .attr('description', () => chance.sentence())
+  .attr('ownerId', pushid())
+  .attr('createdAt', () => chance.date().toISOString())
+  .attr('updatedAt', () => chance.date().toISOString())

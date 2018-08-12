@@ -1,26 +1,32 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('items', {
+    queryInterface.createTable('user', {
       id: {
         type: Sequelize.STRING,
         primaryKey: true,
         unique: true,
       },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+        validate: {
+          notEmpty: {
+            msg: 'email cannot be empty',
+          },
+        },
+      },
+      firstName: {
+        type: Sequelize.STRING,
+        field: 'first_name',
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        field: 'last_name',
+      },
       name: {
         type: Sequelize.STRING,
-      },
-      price: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-      },
-      shoppinglistId: {
-        type: Sequelize.STRING,
-        field: 'shopping_id',
-        allowNull: false,
-      },
-      quantity: {
-        type: Sequelize.STRING,
-        allowNull: true,
+        field: 'name',
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -31,5 +37,5 @@ module.exports = {
         field: 'updated_at',
       },
     }),
-  down: queryInterface => queryInterface.dropTable('items'),
+  down: queryInterface => queryInterface.dropTable('user'),
 }

@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       shoppinglistId: {
         type: DataTypes.STRING,
         field: 'shopping_id',
+        allowNull: false,
       },
       quantity: {
         type: DataTypes.STRING,

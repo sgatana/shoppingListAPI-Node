@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) =>
-    queryInterface.createTable('shoppilists', {
+    queryInterface.createTable('shoppingList', {
       id: {
         type: Sequelize.STRING,
         primaryKey: true,
@@ -15,6 +15,7 @@ module.exports = {
       ownerId: {
         type: Sequelize.STRING,
         field: 'owner_id',
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -25,5 +26,5 @@ module.exports = {
         field: 'updated_at',
       },
     }),
-  down: queryInterface => queryInterface.dropTable('shoppilists'),
+  down: queryInterface => queryInterface.dropTable('shoppingList'),
 }

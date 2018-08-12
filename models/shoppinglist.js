@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const shoppingList = sequelize.define(
-    'shoppinglist',
+    'shoppingList',
     {
       id: {
         type: DataTypes.STRING,
@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       ownerId: {
         type: DataTypes.STRING,
         field: 'owner_id',
+        allowNull: false,
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -27,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      tableName: 'shoppinglist',
+      tableName: 'shoppinglists',
     },
   )
   shoppingList.associate = models => {
