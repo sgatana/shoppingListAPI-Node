@@ -16,9 +16,13 @@ app.use(
 
 const port = process.env.PORT
 app.context.db = db
-router.post('/', userController.createUser)
+router.post('/api', userController.createUser)
+router.get('/api', userController.fetchUsers)
+router.post('/api/login', userController.userLogin)
+
 router.get('/', ctx => {
-  ctx.body = 'hello'
+  ctx.status = 200
+  ctx.body = { message: 'welcome to shopping list API' }
 })
 app.use(router.routes())
 app.listen(port, () => {
