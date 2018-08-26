@@ -11,7 +11,7 @@ class userController {
     } catch (error) {
       ctx.status = 409
       ctx.body = {
-        error: `an error occured ${error}`,
+        error: error.message,
       }
     }
   }
@@ -20,10 +20,10 @@ class userController {
     try {
       const users = await userRepository.fetchUsers(ctx.db)
       ctx.status = 200
-      ctx.body = users
+      ctx.body = { count: users.length, users }
     } catch (error) {
       ctx.body = {
-        error,
+        error: error.message,
       }
     }
   }
@@ -32,8 +32,8 @@ class userController {
     try {
       const params = ctx.request.body
       const user = await userRepository.userLogin(ctx.db, params)
-      console.log('error', user)
       const token = await verifyUserLogin(user, params)
+      ctx.status = 200
       ctx.body = {
         message: 'login successful',
         token,
@@ -41,7 +41,7 @@ class userController {
     } catch (error) {
       ctx.status = 401
       ctx.body = {
-        error: `error has occured ${error}`,
+        error: error.message,
       }
     }
   }

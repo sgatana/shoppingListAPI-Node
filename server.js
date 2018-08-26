@@ -4,6 +4,7 @@ const Router = require('koa-router')
 const bodyparser = require('koa-bodyparser')
 const db = require('./models')
 const userController = require('./controllers/userController')
+const authorize = require('./start/middlewares/authorize')
 
 const app = new Koa()
 const router = new Router()
@@ -24,7 +25,9 @@ router.get('/', ctx => {
   ctx.status = 200
   ctx.body = { message: 'welcome to shopping list API' }
 })
+app.use(authorize)
 app.use(router.routes())
+app.use(router.allowedMethods())
 app.listen(port, () => {
   logger.info(`listening to port ${port}`)
 })
